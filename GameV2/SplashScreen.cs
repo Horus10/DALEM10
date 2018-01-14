@@ -20,6 +20,7 @@ namespace GameV2
         Vector2 position;
         //DANIEL ESTA AQUI!!1
         //Esteban es el mejor 
+       //Pacheco lo logro
 
         public override void LoadContent()
         {
