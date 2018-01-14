@@ -19,6 +19,7 @@ namespace GameV2
         MyPathArray paths;
         Vector2 position;
         //DANIEL ESTA AQUI!!1
+        //Esteban es el mejor 
 
         public override void LoadContent()
         {
