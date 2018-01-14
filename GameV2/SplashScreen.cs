@@ -18,7 +18,7 @@ namespace GameV2
         MyPaths path;
         MyPathArray paths;
         Vector2 position;
-        //public string path;
+        //DANIEL ESTA AQUI!!1
 
         public override void LoadContent()
         {
