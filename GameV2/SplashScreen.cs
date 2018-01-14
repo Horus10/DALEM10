@@ -28,7 +28,7 @@ namespace GameV2
             path =content.Load<MyPaths>("Paths");
             path.Path = "deer";
            
-            // paths = content.Load<MyPathArray>("Paths");
+            // paths = content.Load<MyPathArray("Paths");
             // Console.WriteLine(path.Path);
             image = content.Load<Texture2D>(path.Path);
 
