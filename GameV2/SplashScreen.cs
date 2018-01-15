@@ -51,7 +51,7 @@ namespace GameV2
 
         public override void Update(GameTime gametime)
         {
-
+            //Aqui esta
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
             {
                 isOn = true;
