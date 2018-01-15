@@ -21,7 +21,7 @@ namespace GameV2
         MyPaths path;
         MyPathArray paths;
         Vector2 position;
-        bool isOn;
+        bool isOn,isOn1;
         //DANIEL ESTA AQUI!!1
         //Esteban es el mejor 
        //Pacheco lo logro
@@ -47,25 +47,37 @@ namespace GameV2
         public override void UnloadContent()
         {
             base.UnloadContent();
+         
         }
 
         public override void Update(GameTime gametime)
         {
+
+
             //Aqui esta
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
             {
                 isOn = true;
-            }            
+
+            }
+         
 
             base.Update(gametime);
+          
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (isOn == false)
+            if (isOn == false) { 
                 spriteBatch.Draw(image, Vector2.Zero, Color.White);
+             }
             else
+            {
                 spriteBatch.Draw(swich, Vector2.Zero, Color.White);
+                
+            }
+              
+           
         }
     }
 }
