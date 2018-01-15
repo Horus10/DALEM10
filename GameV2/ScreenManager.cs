@@ -65,6 +65,8 @@ namespace GameV2
         {
             currentScreen.Update(gameTime);
 
+            
+
         }
 
         public void Draw(SpriteBatch spriteBatch)

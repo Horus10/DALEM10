@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
 using XMLData;
 
 namespace GameV2
@@ -15,9 +17,11 @@ namespace GameV2
     {
 
         Texture2D image;
+        Texture2D swich;
         MyPaths path;
         MyPathArray paths;
         Vector2 position;
+        bool isOn;
         //DANIEL ESTA AQUI!!1
         //Esteban es el mejor 
        //Pacheco lo logro
@@ -28,7 +32,9 @@ namespace GameV2
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
 
             path =content.Load<MyPaths>("Paths");
-            path.Path = "deer";
+            path.Path = "rabbit";
+
+            swich = content.Load<Texture2D>("wolf");
            
             // paths = content.Load<MyPathArray("Paths");
             // Console.WriteLine(path.Path);
@@ -45,13 +51,21 @@ namespace GameV2
 
         public override void Update(GameTime gametime)
         {
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+            {
+                isOn = true;
+            }            
+
             base.Update(gametime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(image,Vector2.Zero, Color.White);
-
+            if (isOn == false)
+                spriteBatch.Draw(image, Vector2.Zero, Color.White);
+            else
+                spriteBatch.Draw(swich, Vector2.Zero, Color.White);
         }
     }
 }
