@@ -26,6 +26,7 @@ namespace GameV2
         //Esteban es el mejor 
        //Pacheco lo logro
        //No soy misael ;P
+       //este es el cambio misa :) 
 
         public override void LoadContent()
         {
