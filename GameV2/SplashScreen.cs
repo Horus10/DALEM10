@@ -13,15 +13,16 @@ using XMLData;
 
 namespace GameV2
 {
-    class SplashScreen:GameScreen
+    class SplashScreen : GameScreen
     {
-
+        //SpriteBatch spriteBatch;
         Texture2D image;
         Texture2D swich;
         MyPaths path;
         MyPathArray paths;
         Vector2 position;
-        bool isOn;
+        bool isOn,isChange;
+        GameScreen Escenario1;
         //DANIEL ESTA AQUI!!1
         //Esteban es el mejor 
        //Pacheco lo logro
@@ -34,7 +35,7 @@ namespace GameV2
             path =content.Load<MyPaths>("Paths");
             path.Path = "rabbit";
 
-            swich = content.Load<Texture2D>("wolf");
+            swich = content.Load<Texture2D>("Slime");
            
             // paths = content.Load<MyPathArray("Paths");
             // Console.WriteLine(path.Path);
@@ -55,17 +56,37 @@ namespace GameV2
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
             {
                 isOn = true;
-            }            
+            }else if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                isOn = false;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                UnloadContent();
+                Escenario1 = new Escenario1();
+                Escenario1.LoadContent();
+                isChange = true;
+            }
 
             base.Update(gametime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            //spriteBatch.Begin();
             if (isOn == false)
                 spriteBatch.Draw(image, Vector2.Zero, Color.White);
             else
                 spriteBatch.Draw(swich, Vector2.Zero, Color.White);
+            //spriteBatch.End();
+
+            //spriteBatch.Begin();
+            if (isChange)
+            {
+                Escenario1.Draw(spriteBatch);
+            }
+            //spriteBatch.End();
         }
     }
 }
