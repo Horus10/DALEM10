@@ -21,7 +21,7 @@ namespace GameV2
         MyPaths path;
         MyPathArray paths;
         Vector2 position;
-        bool isOn,isChange;
+        bool isOn,isChange,isOff;
         GameScreen Escenario1;
         //DANIEL ESTA AQUI!!1
         //Esteban es el mejor 
@@ -61,12 +61,18 @@ namespace GameV2
                 isOn = false;
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && isOff == false)
             {
                 UnloadContent();
                 Escenario1 = new Escenario1();
                 Escenario1.LoadContent();
                 isChange = true;
+                isOff = true;
+            }
+
+            if (isOff)
+            {
+                Escenario1.Update(gametime);
             }
 
             base.Update(gametime);

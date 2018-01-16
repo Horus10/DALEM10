@@ -15,6 +15,7 @@ namespace GameV2
     class Escenario1:GameScreen
     {
         Texture2D slime;
+        Vector2 slimePosition;
         //SpriteBatch spriteBatch;
         //private object spriteBatch;
 
@@ -39,13 +40,34 @@ namespace GameV2
 
         public override void Update(GameTime gametime)
         {
+            Vector2 Movement = Vector2.Zero;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                Movement.X += 2;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
+                Movement.X -= 2;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                Movement.Y -= 2;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
+                Movement.Y += 2;
+            }
+
+            slimePosition += Movement;
+
             base.Update(gametime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Begin();
-            spriteBatch.Draw(slime, Vector2.Zero, Color.White);
+            spriteBatch.Draw(slime, slimePosition, Color.White);
             //spriteBatch.End();
            //base.Draw(spriteBatch);
         }

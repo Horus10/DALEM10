@@ -21,6 +21,7 @@ namespace GameV2
         // XmlManager<GameScreen> xmlGameScreenManager;
 
         GameScreen currentScreen;
+        GameScreen newCurrentScreen;
         //[XmlIgnore]
     
 
@@ -73,6 +74,14 @@ namespace GameV2
         {
             currentScreen.Draw(spriteBatch);
 
+        }
+
+        public void change()
+        {
+            newCurrentScreen = new Escenario1();
+            currentScreen.UnloadContent();
+            newCurrentScreen.LoadContent();
+            //newCurrentScreen.Update(gametime);
         }
 
     }
