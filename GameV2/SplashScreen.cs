@@ -15,7 +15,7 @@ namespace GameV2
 {
     class SplashScreen : GameScreen
     {
-        //SpriteBatch spriteBatch;
+
         Texture2D image;
         Texture2D swich;
         MyPaths path;
@@ -48,10 +48,13 @@ namespace GameV2
         public override void UnloadContent()
         {
             base.UnloadContent();
+         
         }
 
         public override void Update(GameTime gametime)
         {
+
+
             //Aqui esta
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
             {
@@ -76,14 +79,16 @@ namespace GameV2
             }
 
             base.Update(gametime);
+          
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Begin();
-            if (isOn == false)
+            if (isOn == false) { 
                 spriteBatch.Draw(image, Vector2.Zero, Color.White);
+             }
             else
+            {
                 spriteBatch.Draw(swich, Vector2.Zero, Color.White);
             //spriteBatch.End();
 
