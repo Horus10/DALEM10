@@ -35,7 +35,7 @@ namespace GameV2
             path =content.Load<MyPaths>("Paths");
             path.Path = "rabbit";
 
-            swich = content.Load<Texture2D>("Slime");
+            swich = content.Load<Texture2D>("wolf");
            
             // paths = content.Load<MyPathArray("Paths");
             // Console.WriteLine(path.Path);
@@ -84,12 +84,14 @@ namespace GameV2
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (isOn == false) { 
+            if (isOn == false)
+            {
                 spriteBatch.Draw(image, Vector2.Zero, Color.White);
-             }
+            }
             else
             {
                 spriteBatch.Draw(swich, Vector2.Zero, Color.White);
+            }
             //spriteBatch.End();
 
             //spriteBatch.Begin();

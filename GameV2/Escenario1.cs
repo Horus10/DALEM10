@@ -50,6 +50,7 @@ namespace GameV2
             {
                 Movement.X -= 2;
             }
+
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 Movement.Y -= 2;
@@ -58,6 +59,25 @@ namespace GameV2
             {
                 Movement.Y += 2;
             }
+
+
+            if (slimePosition.X > ScreenManager.Instance.Dimensions.X - slime.Width)
+            {
+                slimePosition.X -= 2;
+            }
+            if (slimePosition.X < 0)
+            {
+                slimePosition.X += 2;
+            }
+             if (slimePosition.Y < 0)
+            {
+                slimePosition.Y += 2;
+            }
+            if (slimePosition.Y > ScreenManager.Instance.Dimensions.Y - slime.Height)
+            {
+                slimePosition.Y -= 2;
+            }
+
 
             slimePosition += Movement;
 
