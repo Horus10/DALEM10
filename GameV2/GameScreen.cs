@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 
 namespace GameV2
 {
-    class GameScreen
+   public class GameScreen
     {
 
         protected ContentManager content;

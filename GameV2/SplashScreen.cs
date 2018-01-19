@@ -23,15 +23,16 @@ namespace GameV2
         Vector2 position;
         bool isOn,isChange,isOff;
         GameScreen Escenario1;
+        SpriteFont font;
         //DANIEL ESTA AQUI!!1
         //Esteban es el mejor 
-       //Pacheco lo logro
+        //Pacheco lo logro
 
         public override void LoadContent()
         {
             base.LoadContent();
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
-
+            font= font = content.Load<SpriteFont>("Arial"); 
             path =content.Load<MyPaths>("Paths");
             path.Path = "rabbit";
 
@@ -87,10 +88,12 @@ namespace GameV2
             if (isOn == false)
             {
                 spriteBatch.Draw(image, Vector2.Zero, Color.White);
+                spriteBatch.DrawString(font, "Conejo", new Vector2(100, 100), Color.White);
             }
             else
             {
                 spriteBatch.Draw(swich, Vector2.Zero, Color.White);
+                spriteBatch.DrawString(font, "Lobo", new Vector2(100, 100), Color.White);
             }
             //spriteBatch.End();
 

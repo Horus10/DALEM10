@@ -23,7 +23,9 @@ namespace GameV2
         GameScreen currentScreen;
         GameScreen newCurrentScreen;
         //[XmlIgnore]
-    
+        public GraphicsDevice GraphicsDevice;
+        public SpriteBatch SpriteBatch;
+
 
         public static ScreenManager Instance
         {

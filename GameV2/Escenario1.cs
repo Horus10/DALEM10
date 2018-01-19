@@ -14,14 +14,36 @@ namespace GameV2
 {
     class Escenario1:GameScreen
     {
-        Texture2D slime;
+        Texture2D slime, actualSlime;
         Vector2 slimePosition;
+        public int FrameCounter, SwitchFrame;
+        public Vector2 CurrentFrame, AmountOfFrames;
+        public int FrameWidth
+        {
+            get
+            {
+                return slime.Width / (int) AmountOfFrames.X;
+            }
+        }
+
+        public int FrameHeight
+        {
+            get
+            {
+                return slime.Height / (int)AmountOfFrames.Y;
+            }
+        }
         //SpriteBatch spriteBatch;
         //private object spriteBatch;
 
         public Escenario1()
         {
-            
+
+            AmountOfFrames = new Vector2(4,8);
+            CurrentFrame = new Vector2(1,0);
+            SwitchFrame = 100;
+            FrameCounter = 0;
+
         }
 
         public override void LoadContent()
@@ -54,6 +76,7 @@ namespace GameV2
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 Movement.Y -= 2;
+
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
@@ -81,13 +104,17 @@ namespace GameV2
 
             slimePosition += Movement;
 
+            FrameCounter = 0;
+            CurrentFrame.X++;
+
+
             base.Update(gametime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Begin();
-            spriteBatch.Draw(slime, slimePosition, Color.White);
+            spriteBatch.Draw(actualSlime, slimePosition, Color.White);
             //spriteBatch.End();
            //base.Draw(spriteBatch);
         }

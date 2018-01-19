@@ -1,6 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameV2.Models;
+using GameV2.Sprites;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace GameV2
 {
@@ -11,6 +14,8 @@ namespace GameV2
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        private List<Sprite> _sprites;
 
         public Game1()
         {
@@ -42,9 +47,60 @@ namespace GameV2
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            // ScreenManager.Instance.GraphicsDevice = GraphicsDevice;
+            //ScreenManager.Instance.SpriteBatch = spriteBatch;
             // TODO: use this.Content to load your game content here
 
-            ScreenManager.Instance.LoadContent(Content);
+            ///ScreenManager.Instance.LoadContent(Content);
+            ///
+
+            var animations = new Dictionary<string, Animation>()
+            {
+                {"WalkUp",new Animation(Content.Load<Texture2D>("Player/WalkingUp"),3) },
+                {"WalkDown",new Animation(Content.Load<Texture2D>("Player/WalkingDown"),3) },
+                 {"WalkLeft",new Animation(Content.Load<Texture2D>("Player/WalkingLeft"),3) },
+                {"WalkRight",new Animation(Content.Load<Texture2D>("Player/WalkingRight"),3) },
+               
+            };
+
+            _sprites = new List<Sprite>()
+            {
+                new Sprite(new Dictionary<string, Animation>()
+            {
+                {"WalkUp",new Animation(Content.Load<Texture2D>("Player/WalkingUp"),3) },
+                {"WalkDown",new Animation(Content.Load<Texture2D>("Player/WalkingDown"),3) },
+                {"WalkRight",new Animation(Content.Load<Texture2D>("Player/WalkingRight"),3) },
+                {"WalkLeft",new Animation(Content.Load<Texture2D>("Player/WalkingLeft"),3) },
+            })
+                {
+                    Position = new Vector2(100,100),
+
+                    Input = new Input()
+                    {
+
+
+                        Up = Keys.W,
+                        Down = Keys.S,
+                        Left = Keys.A,
+                        Right = Keys.D,
+                    },
+                },
+
+                  new Sprite(animations)
+                {
+                    Position = new Vector2(150,100),
+
+                    Input = new Input()
+                    {
+
+
+                        Up = Keys.Up,
+                        Down = Keys.Down,
+                        Left = Keys.Left,
+                        Right = Keys.Right,
+                    },
+                },
+            };
         }
 
         /// <summary>
@@ -54,7 +110,7 @@ namespace GameV2
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-            ScreenManager.Instance.UnloadContent();
+           // ScreenManager.Instance.UnloadContent();
         }
 
         /// <summary>
@@ -64,11 +120,14 @@ namespace GameV2
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            //  if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //  Exit();
 
             // TODO: Add your update logic here
-            ScreenManager.Instance.Update(gameTime);
+            //   ScreenManager.Instance.Update(gameTime);
+
+            foreach (var sprite in _sprites)
+                sprite.Update(gameTime,_sprites);
             base.Update(gameTime);
         }
 
@@ -78,15 +137,19 @@ namespace GameV2
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
 
            spriteBatch.Begin();
 
-           ScreenManager.Instance.Draw(spriteBatch);
+            foreach (var sprite in _sprites)
+                sprite.Draw(spriteBatch);
 
-           spriteBatch.End();
+           
+            // ScreenManager.Instance.Draw(spriteBatch);
+
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
